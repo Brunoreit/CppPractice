@@ -1,0 +1,124 @@
+// STRUCT EXERCÍCIO 03
+
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+struct dados{
+    
+    int idade, filhos;
+    
+    float salario;
+    
+    char sexo;
+};
+
+float MediaIdade_Mulher_InferiorMinimo(dados populacao[], int n, float salarioMinimo){
+    
+    int count1 = 0;
+    float somaidades = 0;
+    
+    for(int i = 0; i < n; i++)
+    {
+        if(populacao[i].sexo == 'F' && populacao[i].salario < salarioMinimo)
+        {
+            somaidades += populacao[i].idade;    
+            count1++;
+        }
+    }
+    
+if(count1 > 0){
+    return  somaidades / count1;  
+}
+
+else
+{
+    return 0;
+}
+
+}
+
+float MediaSalario_populacao(dados populacao[], int n){
+    
+    float totalSal = 0;    
+    
+    for(int i = 0; i < n; i++)
+    {
+        totalSal += populacao[i].salario; 
+    }
+    
+    return totalSal / n;
+}
+
+
+float mediaFilhos(dados populacao[], int n){
+    
+    int somaFilhos = 0; 
+
+    for (int i = 0; i < n; i++) {
+        somaFilhos += populacao[i].filhos; 
+    }
+
+
+    return somaFilhos / n; 
+    
+}
+
+int menorIdadeFeminino(dados populacao[], int n){
+    
+    int menorIdade = 999;
+    
+    for(int i = 0; i < n; i++)
+    {
+        
+        if(populacao[i].sexo == 'F' && populacao[i].idade < menorIdade){
+            
+            menorIdade = populacao[i].idade;
+        }
+    }
+    
+    if(menorIdade < 999){
+    return menorIdade;
+    
+}else{
+        return -1;
+    }
+}
+
+void imprimirResultados(dados populacao[], int n, float salarioMinimo){
+    
+    cout << "Média de idade das mulheres com salário inferior ao salário mínimo: "
+         << MediaIdade_Mulher_InferiorMinimo(populacao, n, salarioMinimo) << endl;
+    
+    cout << "Média de salário da população: "
+         << MediaSalario_populacao(populacao, n) << endl;
+    
+    cout << "Média de número de filhos: " 
+         << mediaFilhos(populacao, n) << endl;
+
+    cout << "Menor idade do sexo feminino: " 
+         << menorIdadeFeminino(populacao, n) << endl;
+}
+
+
+
+
+int main()
+{
+    int n = 3;
+    dados populacao[n];
+    float salarioMinimo = 1412.00;
+    
+    cout << "Bem Vindo!!!" <<endl;
+    
+    for(int i = 0; i < n; i++)
+    {
+        cout << "Digite a idade, número de filhos, salário e sexo ( M para masculino, F para feminino) do habitante " << i+1 <<": ";
+        cin >> populacao[i].idade >> populacao[i].filhos >> populacao[i].salario >> populacao[i].sexo;
+    }
+    
+    
+    imprimirResultados(populacao, n, salarioMinimo);
+    
+    return 0;
+}

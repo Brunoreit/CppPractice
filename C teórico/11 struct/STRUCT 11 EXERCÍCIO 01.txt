@@ -1,0 +1,102 @@
+//STRUCT 11 EXERCÍCIO 01
+
+#include <iostream>
+using namespace std;
+
+struct Produto
+{
+    int cod_produto;
+    
+    int qnt_estoque;
+    
+    float valor_compra;
+    float valor_venda;
+};
+
+
+
+
+
+int maior_estoque(Produto prods[5])
+{
+    int cod_maior_estoque = prods[0].cod_produto;
+    int maior_qnt_estoque = prods[0].qnt_estoque;
+    
+    for (int i = 0; i < 5; i++ )
+    {
+        if(prods[i].qnt_estoque > maior_qnt_estoque)
+        {
+            maior_qnt_estoque = prods[i].qnt_estoque;
+            cod_maior_estoque = prods[i].cod_produto;
+        }
+        
+    }
+    
+    return cod_maior_estoque;
+}
+
+
+void maior_lucro_cod(Produto prods[5])
+{
+    float calcular_lucro[5];
+    
+    for(int i = 0; i < 5; i++)
+    {
+        calcular_lucro[i] = prods[i].valor_venda - prods[i].valor_compra;
+    }
+    
+    int qnt_estoque_maior_lucro = prods[0].qnt_estoque;
+    int maior_lucro = calcular_lucro[0];
+    
+    
+    for(int i = 0; i < 5; i++)
+    {
+        if (calcular_lucro[i] >= maior_lucro)
+        {
+            qnt_estoque_maior_lucro = prods[i].qnt_estoque;       
+            maior_lucro = calcular_lucro[i];
+        }
+    }
+    cout << "A quantidade de estoque do produto com maior lucro é: ";
+    cout << qnt_estoque_maior_lucro;
+}
+
+
+
+
+int main()
+{
+    int cod_maior_estoque;
+    int capacidade = 5;
+    struct Produto prods[5];
+    
+    
+    cout << "\n\tBem Vindo!!! ";
+    for (int i = 0; i < capacidade; i++ )
+    {
+        
+    cout << "\nDigite o código do produto (inteiro 3 dígitos): ";
+    cin >> prods[i].cod_produto;
+    cout << "Digite a quantidade em estoque: ";
+    cin >> prods[i].qnt_estoque;
+    cout << "Digite o valor de compra: ";
+    cin >> prods[i].valor_compra;
+    cout << "Digite o valor de venda: ";
+    cin >> prods[i].valor_venda;
+    
+    cout << "/////////////////////////////"<<endl;
+    };
+    
+    cod_maior_estoque = maior_estoque(prods);
+    
+    cout << "O código do produto com maior quantidade de estoque é:";
+    cout << cod_maior_estoque;
+    
+    cout << "\n/////////////////////////////"<<endl;
+    
+    maior_lucro_cod(prods);
+    
+    
+
+    return 0;
+}

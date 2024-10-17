@@ -1,0 +1,44 @@
+// 07 STRINGS EXERCÍCIO 01
+
+#include <iostream>
+#include <stdio.h>
+#include <string> //.length(), .find()...
+using namespace std;
+
+
+int main(){
+
+    char caractere;
+    string palavra;
+
+
+    cout << "Digite um caractere: ";
+    cin >> caractere;
+    cin.ignore();
+
+    
+    cout << "Digite uma palavra (MAX 20 caracteres): ";
+    getline(cin, palavra);
+
+    
+    if(palavra.size() > 20){
+	cout << "A string deve ter no máximo 20 caracteres." << endl;
+	return 1;
+    }
+    
+    
+    int count = 0;
+    for(int i = 0; i < palavra.size();i++)
+    {
+        if(palavra[i] == caractere)
+        {
+            count++;
+        }    
+            
+    }
+    
+    cout << "A quantidade de caracteres " << caractere << " na palavra é: "
+         << count;
+    
+    return 0;
+}

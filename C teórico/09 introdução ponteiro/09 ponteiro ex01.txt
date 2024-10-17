@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+
+
+int num;
+int *M;
+
+int soma_digitos(int num)
+{
+    int soma = 0;
+    
+    while(num > 0)
+    {
+        soma += num % 10;
+        num /= 10;
+    }
+    
+    return soma;
+}
+
+void maior_digito(int num, int *M)
+{
+    int maiorr = num % 10;
+    
+    while(num > 0)
+    {
+        num /= 10;
+        
+        if(num % 10 > maiorr)
+        {
+            maiorr = num % 10;
+        }
+    }
+    
+    *M = maiorr;
+    
+}
+
+
+
+
+
+
+int main()
+{
+    int maiorDig;
+
+    cout << "Digite um número inteiro: ";
+    cin >> num;
+    
+    int resultado1 = soma_digitos(num);
+    
+    cout << "A soma dos dígitos do número digitado é: " << resultado1
+    <<endl;
+    
+    maior_digito(num, &maiorDig);
+
+    cout << "O maior digito desse número inteiro é: " << maiorDig
+    <<endl;
+    
+    return 0;
+}

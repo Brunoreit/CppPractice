@@ -1,0 +1,175 @@
+// PROJETO PRÁTICO C / C++ 2°semestre fazendo sozinho para praticar
+
+#include <iostream>
+using namespace std;
+
+struct st_livro{
+    
+  string titulo;
+  
+  string autor;
+  
+  int num_paginas;
+  
+  int ano_publi;
+  
+  int id;
+  
+  int qnt_disponivel;
+  
+  char nome_emprestaram[10][100];
+  
+};
+
+
+void cadastro_livros(st_livro vec[], int *pos){
+    
+ cout << "===== Cadastro de livros =====" << endl;
+    cin.ignore();
+    cout << "Digite o título do exemplar: ";
+    getline(cin, vec[*pos].titulo);
+
+    
+    cout << "Digite o autor: ";
+    getline(cin, vec[*pos].autor);
+
+    cout << "Digite o número de páginas: ";
+    cin >> vec[*pos].num_paginas;
+    
+    cout << "Digite o ano de publicação: ";
+    cin >> vec[*pos].ano_publi;
+
+    cout << "Digite o ID do livro: ";
+    cin >> vec[*pos].id;
+
+    cout << "Digite a quantidade disponível: ";
+    cin >> vec[*pos].qnt_disponivel;
+    
+    (*pos)++;
+}
+
+void remocao_livros(st_livro vec[], *pos){
+    int id;
+    
+    cout << "===== Remoção de livros =====" << endl;
+    
+    cout << "Digite o ID do livro que deseja remover: "; cin >> id;
+    
+    for(int i = 0; i < *pos; i++){
+        
+        if(vec[i].id == id){
+            
+            for(int j = i ; i <= *pos; i++){
+                
+                vec[j] = vec[j + 1]
+            }
+        }
+    }
+    (*sz)--;
+}
+
+void consultar_livros(st_livro vec[], int *pos){
+    int opcao;
+    
+    cout << "===== Consultar livros =====" <<endl<<endl;
+    cin.ignore();
+    cout << "Listar todos os livros ou buscar um específico? (1 -> Listar todos | 2 -> buscar livro): "; cin >> opcao;
+    
+    if(opcao == 1){
+        
+        for(int i = 0; i < *pos; i++){
+            
+            cout << "Título: " << vec[i].titulo;
+            cout << "Autor: " << vec[i].autor;
+            cout << "Número de páginas: " << vec[i].num_paginas;
+            cout << "Ano de publicação: " << vec[i].ano_publi;
+            cout << "ID: " << vec[i].id;
+            cout << "Quantidade disponível: " << vec[i].qnt_disponivel;
+        }
+    }else if(opcao == 2){
+        
+        cout << "Deseja buscar pelo ID -> (1) ou título? -> (2): "; cin >> opcao;
+        
+        if(opcao == 1){
+            
+            int id;
+            cout << "Digite o ID: "; cin >> id;
+            
+            for(int i = 0; i < *pos; i++){
+                
+                if(vec[i].id == id){
+                    
+                    cout << "===== Livro encontrado =====";
+                    cout << "Título: " << vec[i].titulo;
+                    cout << "Autor: " << vec[i].autor;
+                    cout << "Número de páginas: " << vec[i].num_paginas;
+                    cout << "Ano de publicação: " << vec[i].ano_publi;
+                    cout << "ID: " << vec[i].id;
+                    cout << "Quantidade disponível: " << vec[i].qnt_disponivel;
+                    break;
+                }
+            }
+        }else if(opcao == 2){
+            
+            string titulo;
+            cin.ignore();
+            
+            cout << "Digite o título: "; getline(cin,titulo);
+            
+            for(int i = 0; i < *pos; i++){
+                
+                if(titulo == vec[i].titulo){
+                    
+                    cout << "===== Livro encontrado =====";
+                    cout << "Título: " << vec[i].titulo;
+                    cout << "Autor: " << vec[i].autor;
+                    cout << "Número de páginas: " << vec[i].num_paginas;
+                    cout << "Ano de publicação: " << vec[i].ano_publi;
+                    cout << "ID: " << vec[i].id;
+                    cout << "Quantidade disponível: " << vec[i].qnt_disponivel;
+                    break;
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    
+}
+
+
+int main()
+{
+ int quantidade = 0, opcao;;
+ struct st_livro vetorLivros[4];
+ 
+while(true){
+    cout << "===== Menu =====" << endl << endl;
+    
+    cout << "1. cadastrar"<< endl;
+    cout << "2. consulta livros"<< endl;
+    cout << "3. Remoção de livros"<< endl<<endl;
+    
+    cout << "O que deseja fazer?: "; cin >> opcao;
+    
+    switch(opcao){
+        
+        case 1:{
+            
+            cadastro_livros(vetorLivros, &quantidade);
+            break;
+        }
+        case 2:{
+            
+            consultar_livros(vetorLivros, &quantidade);
+            break;
+        }
+        
+        
+        
+        }
+    }
+    return 0;
+}

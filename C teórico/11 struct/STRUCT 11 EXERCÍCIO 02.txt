@@ -1,0 +1,56 @@
+STRUCT 02
+
+//STRUCT 11 EXERCÍCIO 02
+
+#include <iostream>
+using namespace std;
+
+struct st_aluno
+{
+    int RA;
+    int cod_disciplina;
+    float vetNotas[2];
+    
+};
+
+void imprimir_lista(st_aluno alunos[4])
+{
+    for(int i = 0; i < 4; i++)
+    {
+        cout << "RA do aluno: " << alunos[i].RA <<endl;
+        cout << "Código da disciplina: " << alunos[i].cod_disciplina <<endl;
+        cout << "Média final: "
+             << ((alunos[i].vetNotas[0] * 1) + (alunos[i].vetNotas[1] * 2)) / 3 <<endl;
+    
+    
+    }
+}
+
+
+
+
+
+
+int main()
+{
+    struct st_aluno alunos[4];
+    
+    cout << "\n\tBem Vindo!!! "<<endl;
+    
+    for(int i = 0; i < 4; i++)
+    {
+        cout << "Digite o RA do aluno: ";
+        cin >> alunos[i].RA; 
+        cout << "Digite o código da disciplina: ";
+        cin >> alunos[i].cod_disciplina;
+        cout << "Digite o valor da Nota1 e Nota2: "<<endl;
+        cin >> alunos[i].vetNotas[0];
+        cin >> alunos[i].vetNotas[1];
+        
+        
+    }
+    
+    imprimir_lista(alunos);
+
+    return 0;
+}
